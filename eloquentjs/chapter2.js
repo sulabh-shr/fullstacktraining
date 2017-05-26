@@ -34,7 +34,7 @@ for(var num=1; num<=100; num++){
 	if(num%5 === 0){
 		status+="Buzz";
 	}
-	console.log(status || num);
+	console.log(status || num); // short-circuting num
 }
 console.log("==============================================");
 
