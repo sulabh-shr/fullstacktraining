@@ -1,14 +1,15 @@
-var a = {"name": [0,1]};
+var a = [[0,1,2,3,4,5], [6,7]];
 var b = ["name"];
-var c = [{"name": "sulabh"}];
+var c = "This is a string \n this is the 2nd line";
 
-function hasProperty(property, object){
-  for(var prop in object){
-    if(prop === property){
-      return true;
-    }
-  }
-  return false;
+var t = a.map(function(element){
+  return element.reduce(funcR);
+});
+
+function funcR(max, x){
+  return Math.max(max, x);
 }
 
-console.log(hasProperty("nam",a));
+
+
+console.log(c[4]||"");
