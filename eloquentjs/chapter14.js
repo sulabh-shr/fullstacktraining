@@ -10,7 +10,7 @@ var field = document.querySelector("input");
   });
 console.log("==========================================================");
 
-/*
+
 // Trail
 console.log("Trail:".toUpperCase());
 var dots = [];
@@ -30,50 +30,48 @@ var dots = [];
     currentDot = (currentDot + 1) % dots.length;
   });
 console.log("==========================================================");
-*/
+
 
 // Tabs
 console.log("Tabs:".toUpperCase());
 function asTabs(node) {
- 	var tabs = []
- 	// Creating a real array (non-live) of data divs
- 	for(var i = 0; i<node.childNodes.length; i++){
- 		var child = node.childNodes[i];
- 		if(child.nodeType == document.ELEMENT_NODE){
- 			tabs.push(child);
- 		}
- 	}
+	// Creating a real (non-live) array
+    var tabs = [];
+    for (var i = 0; i < node.childNodes.length; i++) {
+      var child = node.childNodes[i];
+      if (child.nodeType == document.ELEMENT_NODE)
+        tabs.push(child);
+    }
 
- 	// Creating a list of buttons
- 	var tablist = document.createElement("div");
- 	tabs.forEach(function(tab,i){
- 		var button = document.createElement("button");
- 		button.textContent = tab.getAttribute("data-name");
- 		button.addEventListener("click", function(){selectTab(i);});
- 		tablist.appendChild(button);
- 	});
+   // Creating a list of buttons
+    var tabList = document.createElement("div");
+    tabs.forEach(function(tab, i) {
+      var button = document.createElement("button");
+      button.textContent = tab.getAttribute("data-tabname");
+      button.addEventListener("click", function() { selectTab(i); });
+      tabList.appendChild(button);
+    });
 
- 	// Inserting before div data-name="one" the buttons
- 	node.insertBefore(tablist, node.firstChild);			
+    // Appending buttons before the 1st data div
+    node.insertBefore(tabList, node.firstChild);
 
-
- 	function selectTab(n){
- 		tabs.forEach(function(tab,i){
- 			if(i==n)
- 				tab.style.display = "";
- 			else
- 				tab.style.display = "hidden";
- 		});
-
- 		for (var i = 0; i < tablist.childNodes.length; i++) {
+    function selectTab(n) {
+    	// only displaying currently active tab
+      tabs.forEach(function(tab, i) {
         if (i == n)
-          tablist.childNodes[i].style.background = "violet";
+          tab.style.display = "";
         else
-          tablist.childNodes[i].style.background = "";
+          tab.style.display = "none";
+      });
+
+      // styling active buttons differently
+      for (var i = 0; i < tabList.childNodes.length; i++) {
+        if (i == n)
+          tabList.childNodes[i].style.background = "yellow";
+        else
+          tabList.childNodes[i].style.background = "";
       }
- 	};
-
- 	selectTab(0);
- }
-
-asTabs(document.querySelector("#wrapper"));
+    }
+    selectTab(0);
+  }
+  asTabs(document.querySelector("#wrapper"));
