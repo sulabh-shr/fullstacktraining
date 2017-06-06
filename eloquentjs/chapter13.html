@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS Chapter 13</title>
+</head>
+<body>
+
+<style>
+  /* Defines a cleaner look for tables */
+  table  { border-collapse: collapse; }
+  td, th { border: 1px solid black; padding: 3px 8px; }
+  th     { text-align: left; }
+</style>
+
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+  spans.</p>
+
+
+<p style="text-align: center">
+  <img src="chapter13-cat.jpg" id="cat" style="position: absolute">
+	<img src="chapter13-hat.jpg" id="hat" style="position: absolute">
+</p>
+
+
+<script>
+  var cat = document.querySelector("#cat");
+  var hat = document.querySelector('#hat');
+
+  var angle = 0, lastTime = null;
+
+  function animate(time) {
+    if (lastTime != null)
+      angle += (time - lastTime) * 0.001;
+    lastTime = time;
+
+    cat.style.top = (Math.sin(angle) * 50+200) + "px";
+    cat.style.left = (Math.cos(angle) * 200+800) + "px";
+
+    var angleHat = angle+Math.PI;
+
+    hat.style.top = (Math.sin(angleHat) * 50+300) + "px";
+    hat.style.left = (Math.cos(angleHat) * 200+500) + "px";
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+</script>
+
+<script src="chapter13-table.js"></script> 
+<script src="chapter13.js"></script>
+
+
+
+
+
+</body>
+</html>
